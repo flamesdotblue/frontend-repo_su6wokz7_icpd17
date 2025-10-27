@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Trash2, Flame, Server, Home, Stethoscope, Droplets, Truck, Sprout, Sun } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const sectors = [
   { icon: Trash2, title: 'Solid Waste', blurb: 'Integrated waste systems, circularity, and resource recovery.' },
@@ -14,8 +15,25 @@ const sectors = [
 ];
 
 export default function Sectors() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const ySlow = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const yFast = useTransform(scrollYProgress, [0, 1], [0, -300]);
+
   return (
-    <section id="sectors" className="relative w-full bg-slate-50 py-20">
+    <section id="sectors" ref={ref} className="relative w-full bg-slate-50 py-20 overflow-hidden">
+      {/* Parallax background layers */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute -top-20 left-1/2 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-[#00A676]/10 blur-3xl"
+        style={{ y: ySlow }}
+      />
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-24 left-10 h-[360px] w-[360px] rounded-full bg-[#003366]/10 blur-3xl"
+        style={{ y: yFast }}
+      />
+
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-heading text-3xl font-semibold tracking-tight text-[#003366] sm:text-4xl">
@@ -27,8 +45,17 @@ export default function Sectors() {
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {sectors.map(({ icon: Icon, title, blurb }) => (
-            <div key={title} className="group relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+          {sectors.map(({ icon: Icon, title, blurb }, i) => (
+            <motion.div
+              key={title}
+              className="group relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: i * 0.04 }}
+              whileHover={{ y: -8, rotateX: 0, rotateY: 0 }}
+              style={{ transformStyle: 'preserve-3d' }}
+            >
               <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[rgba(0,166,118,0.1)] text-[#00A676] ring-1 ring-[rgba(0,166,118,0.25)]">
                 <Icon className="h-6 w-6" />
               </div>
@@ -37,7 +64,13 @@ export default function Sectors() {
               <a href="#contact" className="mt-4 inline-block text-sm font-medium text-[#007e5d] hover:text-[#006e52]">
                 Discuss opportunities →
               </a>
-            </div>
+              {/* Subtle inner highlight that moves slower for depth */}
+              <motion.div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-tr from-[#00A676]/[0.05] to-transparent"
+                style={{ y: ySlow }}
+              />
+            </motion.div>
           ))}
         </div>
       </div>

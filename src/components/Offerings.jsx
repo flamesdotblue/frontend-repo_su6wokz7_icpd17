@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { ChevronDown, FileText, ShieldCheck, BarChart3, Calculator, Gavel, Map, Briefcase, Users, Landmark, Layers, Banknote } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const offerings = [
   { title: 'Comprehensive Risk Assessment', icon: ShieldCheck, slug: 'comprehensive-risk-assessment', desc: 'Holistic identification, quantification, and mitigation of technical, financial, and regulatory risks across the project lifecycle.' },
@@ -17,9 +18,19 @@ const offerings = [
 
 export default function Offerings() {
   const [open, setOpen] = useState(0);
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const yBg = useTransform(scrollYProgress, [0, 1], [0, -140]);
 
   return (
-    <section id="offerings" className="relative w-full bg-white py-20">
+    <section id="offerings" ref={ref} className="relative w-full bg-white py-20 overflow-hidden">
+      {/* Parallax ribbon */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute -inset-x-10 top-24 h-40 rounded-full bg-gradient-to-r from-[#003366]/10 via-transparent to-[#00A676]/10 blur-2xl"
+        style={{ y: yBg }}
+      />
+
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-heading text-3xl font-semibold tracking-tight text-[#003366] sm:text-4xl">
@@ -30,7 +41,13 @@ export default function Offerings() {
           </p>
         </div>
 
-        <div className="mx-auto mt-10 max-w-3xl divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white">
+        <motion.div
+          className="mx-auto mt-10 max-w-3xl divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm shadow"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.6 }}
+        >
           {offerings.map(({ title, icon: Icon, desc, slug }, idx) => {
             const isOpen = open === idx;
             return (
@@ -48,7 +65,13 @@ export default function Offerings() {
                 </button>
                 <div className={`grid transition-[grid-template-rows] duration-300 ease-out ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
                   <div className="min-h-0 overflow-hidden px-5 pb-5 text-sm leading-relaxed text-slate-600">
-                    <p>{desc}</p>
+                    <motion.p
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -8 }}
+                      transition={{ duration: 0.25 }}
+                    >
+                      {desc}
+                    </motion.p>
                     <a
                       href={`/#offering-${slug}`}
                       className="mt-3 inline-block text-sm font-medium text-[#007e5d] hover:text-[#006e52]"
@@ -61,7 +84,7 @@ export default function Offerings() {
               </div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
