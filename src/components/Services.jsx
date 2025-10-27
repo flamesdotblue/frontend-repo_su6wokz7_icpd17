@@ -45,7 +45,7 @@ export default function Services() {
     <section id="services" className="relative w-full bg-white py-20 text-slate-900">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
+          <h2 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl text-[#003366]">
             Expertise that drives sustainable outcomes
           </h2>
           <p className="mt-3 text-slate-600">
@@ -59,7 +59,7 @@ export default function Services() {
               key={title}
               className="group relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 ring-1 ring-emerald-200">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[rgba(0,166,118,0.1)] text-[#00A676] ring-1 ring-[rgba(0,166,118,0.25)]">
                 <Icon className="h-6 w-6" />
               </div>
               <h3 className="mt-5 text-lg font-semibold text-slate-900">{title}</h3>

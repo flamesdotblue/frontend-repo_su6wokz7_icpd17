@@ -18,7 +18,7 @@ export default function Sectors() {
     <section id="sectors" className="relative w-full bg-slate-50 py-20">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-heading text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="font-heading text-3xl font-semibold tracking-tight text-[#003366] sm:text-4xl">
             Overview of Key Sectors
           </h2>
           <p className="mt-3 text-slate-600">
@@ -29,12 +29,12 @@ export default function Sectors() {
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {sectors.map(({ icon: Icon, title, blurb }) => (
             <div key={title} className="group relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 ring-1 ring-emerald-200">
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[rgba(0,166,118,0.1)] text-[#00A676] ring-1 ring-[rgba(0,166,118,0.25)]">
                 <Icon className="h-6 w-6" />
               </div>
               <h3 className="mt-5 text-lg font-semibold text-slate-900">{title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">{blurb}</p>
-              <a href="#contact" className="mt-4 inline-block text-sm font-medium text-emerald-700 hover:text-emerald-800">
+              <a href="#contact" className="mt-4 inline-block text-sm font-medium text-[#007e5d] hover:text-[#006e52]">
                 Discuss opportunities →
               </a>
             </div>

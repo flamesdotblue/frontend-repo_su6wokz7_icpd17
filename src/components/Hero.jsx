@@ -4,7 +4,7 @@ import { ArrowRight, ShieldCheck } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative h-[90vh] min-h-[640px] w-full overflow-hidden bg-slate-950 text-white">
+    <section className="relative h-[90vh] min-h-[640px] w-full overflow-hidden bg-[#003366] text-white">
       {/* 3D Scene */}
       <div className="absolute inset-0">
         <Spline
@@ -14,19 +14,19 @@ export default function Hero() {
       </div>
 
       {/* Gradient overlay to improve contrast, does not block interaction */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/40 to-slate-950/90" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(0,166,118,0.25),rgba(0,51,102,0.2)_40%,rgba(0,51,102,0.9))]" />
 
       {/* Content */}
       <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6">
         <div className="max-w-2xl">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-200">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[rgba(0,166,118,0.35)] bg-[rgba(0,166,118,0.12)] px-3 py-1 text-xs text-[#9EE6D2]">
             <ShieldCheck className="h-3.5 w-3.5" />
             Trusted Advisory for Sustainable Growth
           </div>
           <h1 className="font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl md:text-6xl">
             I-FECT Asia Advisory Pte. Ltd.
           </h1>
-          <p className="mt-4 text-base leading-relaxed text-slate-200 sm:text-lg">
+          <p className="mt-4 text-base leading-relaxed text-blue-100 sm:text-lg">
             Strategic advisory across Infrastructure, Management, and Climate—
             helping public and private leaders accelerate projects aligned with
             Singapore’s Green Plan 2030.
@@ -34,7 +34,7 @@ export default function Hero() {
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-3 font-medium text-emerald-950 transition hover:bg-emerald-400"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#00A676] px-5 py-3 font-medium text-[#002a4d] shadow transition hover:bg-[#009765]"
             >
               Discuss Your Project <ArrowRight className="h-4 w-4" />
             </a>

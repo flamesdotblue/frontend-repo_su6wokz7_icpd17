@@ -22,7 +22,7 @@ export default function Offerings() {
     <section id="offerings" className="relative w-full bg-white py-20">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-heading text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="font-heading text-3xl font-semibold tracking-tight text-[#003366] sm:text-4xl">
             Services / Key Offerings
           </h2>
           <p className="mt-3 text-slate-600">
@@ -40,7 +40,7 @@ export default function Offerings() {
                   onClick={() => setOpen(isOpen ? -1 : idx)}
                   aria-expanded={isOpen}
                 >
-                  <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 ring-1 ring-emerald-200">
+                  <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-[rgba(0,166,118,0.1)] text-[#00A676] ring-1 ring-[rgba(0,166,118,0.25)]">
                     <Icon className="h-5 w-5" />
                   </div>
                   <span className="flex-1 font-medium text-slate-900">{title}</span>
@@ -51,7 +51,7 @@ export default function Offerings() {
                     <p>{desc}</p>
                     <a
                       href={`/#offering-${slug}`}
-                      className="mt-3 inline-block text-sm font-medium text-emerald-700 hover:text-emerald-800"
+                      className="mt-3 inline-block text-sm font-medium text-[#007e5d] hover:text-[#006e52]"
                     >
                       View details →
                     </a>
